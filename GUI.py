@@ -6,16 +6,17 @@ pygame.font.init()
 
 class Grid:
     board = [
-        [7, 8, 0, 4, 0, 0, 1, 2, 0],
-        [6, 0, 0, 0, 7, 5, 0, 0, 9],
-        [0, 0, 0, 6, 0, 1, 0, 7, 8],
-        [0, 0, 7, 0, 4, 0, 2, 6, 0],
-        [0, 0, 1, 0, 5, 0, 9, 3, 0],
-        [9, 0, 4, 0, 6, 0, 0, 0, 5],
-        [0, 7, 0, 3, 0, 0, 0, 1, 2],
-        [1, 2, 0, 0, 0, 7, 4, 0, 0],
-        [0, 4, 9, 2, 0, 6, 0, 0, 7]
+        [2, 0, 0, 5, 1, 0, 0, 0, 9],
+        [0, 1, 0, 0, 8, 0, 0, 0, 2],
+        [0, 0, 7, 0, 0, 0, 0, 4, 8],
+        [9, 0, 0, 2, 6, 4, 0, 0, 0],
+        [3, 4, 0, 0, 0, 0, 2, 9, 0],
+        [0, 2, 0, 0, 9, 0, 0, 0, 1],
+        [4, 6, 0, 1, 0, 0, 8, 0, 0],
+        [1, 0, 2, 0, 4, 8, 0, 3, 0],
+        [0, 0, 3, 0, 0, 2, 0, 1, 0]
     ]
+    
 
     def __init__(self, rows, cols, width, height, win):
         self.rows = rows
@@ -253,8 +254,12 @@ def format_time(secs):
     mat = " " + str(minute) + ":" + str(sec)
     return mat
 
+def refresh():
+    pygame.quit()
+    main()
 
 def main():
+    pygame.init()
     win = pygame.display.set_mode((540,600))
     pygame.display.set_caption("Sudoku")
     board = Grid(9, 9, 540, 540, win)
@@ -306,6 +311,8 @@ def main():
                     key = 8
                 if event.key == pygame.K_KP9:
                     key = 9
+                if event.key == pygame.K_r:
+                    refresh()
                 if event.key == pygame.K_DELETE:
                     board.clear()
                     key = None
@@ -339,6 +346,6 @@ def main():
         redraw_window(win, board, play_time, strikes)
         pygame.display.update()
 
-
-main()
-pygame.quit()
+if __name__ == "__main__":
+    main()
+    pygame.quit()
