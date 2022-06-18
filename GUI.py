@@ -1,6 +1,7 @@
 # GUI.py
 import pygame
 import time
+from random import choice
 pygame.font.init()
 
 
@@ -16,9 +17,45 @@ class Grid:
         [1, 0, 2, 0, 4, 8, 0, 3, 0],
         [0, 0, 3, 0, 0, 2, 0, 1, 0]
     ]
-    
-
-    def __init__(self, rows, cols, width, height, win):
+    board1 = [
+        [3, 0, 0, 5, 1, 0, 0, 0, 9],
+        [0, 1, 0, 0, 8, 0, 0, 0, 2],
+        [0, 0, 7, 0, 0, 0, 0, 4, 8],
+        [9, 0, 0, 2, 6, 4, 0, 0, 0],
+        [3, 4, 0, 0, 0, 0, 2, 9, 0],
+        [0, 2, 0, 0, 9, 0, 0, 0, 1],
+        [4, 6, 0, 1, 0, 0, 8, 0, 0],
+        [1, 0, 2, 0, 4, 8, 0, 3, 0],
+        [0, 0, 3, 0, 0, 2, 0, 1, 0]
+    ]
+    board2 = [
+        [1, 0, 0, 5, 1, 0, 0, 0, 9],
+        [0, 1, 0, 0, 8, 0, 0, 0, 2],
+        [0, 0, 7, 0, 0, 0, 0, 4, 8],
+        [9, 0, 0, 2, 6, 4, 0, 0, 0],
+        [3, 4, 0, 0, 0, 0, 2, 9, 0],
+        [0, 2, 0, 0, 9, 0, 0, 0, 1],
+        [4, 6, 0, 1, 0, 0, 8, 0, 0],
+        [1, 0, 2, 0, 4, 8, 0, 3, 0],
+        [0, 0, 3, 0, 0, 2, 0, 1, 0]
+    ]
+    board3 = [
+        [9, 0, 0, 5, 1, 0, 0, 0, 9],
+        [0, 1, 0, 0, 8, 0, 0, 0, 2],
+        [0, 0, 7, 0, 0, 0, 0, 4, 8],
+        [9, 0, 0, 2, 6, 4, 0, 0, 0],
+        [3, 4, 0, 0, 0, 0, 2, 9, 0],
+        [0, 2, 0, 0, 9, 0, 0, 0, 1],
+        [4, 6, 0, 1, 0, 0, 8, 0, 0],
+        [1, 0, 2, 0, 4, 8, 0, 3, 0],
+        [0, 0, 3, 0, 0, 2, 0, 1, 0]
+    ]
+    "To add more boards, create a board with a different variable. Then add the name of the variable to the list 'board_list'"
+    def __init__(self, rows, cols, width, height, win, board=None, board_list=[board,board1,board2,board3]):
+        if not(board):
+            self.board = choice(board_list)
+        else:
+            self.board = board
         self.rows = rows
         self.cols = cols
         self.cubes = [[Cube(self.board[i][j], i, j, width, height) for j in range(cols)] for i in range(rows)]
